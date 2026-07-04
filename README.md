@@ -1,4 +1,3 @@
-[CRTO_Complete_Study_Guide.md](https://github.com/user-attachments/files/29659341/CRTO_Complete_Study_Guide.md)
 # CRTO — Certified Red Team Operator
 ## Complete Hands-On Study Guide & Lab Notes
 
