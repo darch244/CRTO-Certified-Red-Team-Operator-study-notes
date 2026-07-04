@@ -3,8 +3,7 @@
 
 **Author:** DarcHacker  
 **LinkedIn:** [Mostafa Ibrahim](https://www.linkedin.com/in/mostafa-ibrahim-60b543341)  
-**Date:** 2026  
-**Status:** Comprehensive Red Team Operator Guide  
+
 
 ---
 
@@ -1629,4 +1628,4 @@ CRTO | Zero Point Security | “The goal is not to get Domain Admin. The goal is
 
 By DarcHacker.
 
-LinkedIn:www.linkedin.com/in/mostafa-ibrahim-60b543341
+**LinkedIn:** [Mostafa Ibrahim](https://www.linkedin.com/in/mostafa-ibrahim-60b543341)  
